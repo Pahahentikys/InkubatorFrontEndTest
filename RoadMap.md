@@ -10,13 +10,13 @@
 
         - [x] 3. 2. Настроить состояние приложения: "Включено и видно всем".
 
-   - [ ] 4. Ознакомиться с документацией по Webpack: https://webpack.js.org/guides/getting-started/
+   - [x] 4. Ознакомиться с документацией по Webpack: https://webpack.js.org/guides/getting-started/
 
-   - [ ] 5. Ознакомиться с документацией по Vue.JS: https://ru.vuejs.org/v2/guide/
+   - [x] 5. Ознакомиться с документацией по Vue.JS: https://ru.vuejs.org/v2/guide/
 
-   - [ ] 6. Интегрировать Webpack + Vue.JS в проект.
+   - [x] 6. Интегрировать Webpack + Vue.JS в проект.
 
-        - [ ] 6. 1. Воспользоваться шаблоном-заготовкой с репозитория Vue на Git: **https://github.com/vuejs-templates/webpack-simple**
+        - [x] 6. 1. Воспользоваться шаблоном-заготовкой с репозитория Vue на Git: **https://github.com/vuejs-templates/webpack-simple**
 
    - [ ] 7. Ознакомиться с документацией по SASS.
 
