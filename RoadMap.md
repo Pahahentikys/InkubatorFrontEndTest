@@ -54,7 +54,7 @@
 
         - [ ] 12. 3. Встроить роутинг во vue-шаблоны:
 
-            - [ ] 12. 3. 1. В App.vue добавить router-view
+            - [x] 12. 3. 1. В App.vue добавить router-view
 
             - [ ] 12. 3. 2. В index.vue и userProfile.vue добавить router-link с соответствующими путями.
 
