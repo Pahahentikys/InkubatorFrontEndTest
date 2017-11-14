@@ -24,7 +24,7 @@
 
         - [x] 8. 1. Интегрировать PUG в проект: **npm install pug**.
 
-        - [ ] 8. 2. Интегрировать pug-loader в проект: **npm install pug-loader**.
+        - [x] 8. 2. Интегрировать pug-loader в проект: **npm install pug-loader**.
 
    - [x] 9. Интегрировать в проект библиотеки для работы с HTTP-запросами:
 
