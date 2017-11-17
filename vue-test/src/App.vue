@@ -6,10 +6,17 @@
 
 <script>
 import navBar from './components/navBar.vue'
+import userDetails from './components/userDetails.vue'
+import userList from './components/userList.vue'
+import userListItem from './components/userListItem.vue'
+
 
   export default{
     components:{
-        navBar
+      navBar,
+      userDetails,
+      userList,
+      userListItem
     }
 }
 </script>
