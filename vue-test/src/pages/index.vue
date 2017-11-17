@@ -4,19 +4,23 @@
     router-link(tag="a" to="/userProfile")
       em Переход на страницу пользователя
     div.show-user-wrapper
-      a(href="https://oauth.vk.com/authorize?client_id=6250888&redirect_uri=http://localhost:8080/&display=popup&scope=friends,photos,audio,video,pages,status,notes,wall,offline,docs,groups,notifications,email&response_type=token&state=hello&revoke=1") Получить токен
-      input.access-token(type="text")
-      input(type="button" value="Найти пользователей" v-on:click="getUsers")
-      div.show-user
-        ul(v-for="user in users")
-          li {{users.first_name}} {{users.last_name}}]
+      user-list
+
+    a(href="https://oauth.vk.com/authorize?client_id=6250888&redirect_uri=http://localhost:8080/&display=popup&response_type=token&state=hello&revoke=1")
+    input.access-token(type="text")
+    input(type="button" value="Найти пользователей" v-on:click="getUsers")
+
 </template>
 
 <script>
+  import userList from "../components/userList.vue"
   import axios from 'axios'
 
   export default {
     name: 'index',
+    components:{
+      userList
+    },
     data() {
       return {
         users: [],
