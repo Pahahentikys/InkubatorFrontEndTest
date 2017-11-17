@@ -88,11 +88,11 @@
 
         - [x] 15. 2. Разобраться с форматом url'а для релизации авторизации на: **OAth** и получением тоукена для работы с методом **users.search**. Составленный URL:
 
-            **https://oauth.vk.com/authorize?client_id=идентификатор_клиента&redirect_uri=адрес_приложения&display=popup&response_type=token&state=helloVue&revoke=1**
+           https://oauth.vk.com/authorize?client_id=идентификатор_клиента&redirect_uri=адрес_приложения&display=popup&response_type=token&state=helloVue&revoke=1
 
         - [x] 15. 3. С полученным тоукеном реализовать необходимый тестовый запрос:
 
-         **https://api.vk.com/method/users.search?sort=0&count=10&fields=photo_100,first_name,last_name&q=имя_фамилия&access_token=тоукен_полученный_выше**
+           https://api.vk.com/method/users.search?sort=0&count=10&fields=photo_100,first_name,last_name&q=имя_фамилия&access_token=тоукен_полученный_выше
 
    - [x] 16. Ознакомиться с документацией по **axios**: **https://github.com/axios/axios**
 
