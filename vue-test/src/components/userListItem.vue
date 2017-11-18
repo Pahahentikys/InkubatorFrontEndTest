@@ -4,8 +4,7 @@
       h2 {{user.id}}
       h2 {{user.first_name}}
       h2 {{user.last_name}}
-    //span {{userId}}
-    router-link(tag="a", :to="{name: 'userDetails', params:{id: 1}}") Подробнее
+    router-link(tag="a", :to="{name: 'userDetails', params:{id: user.id}}") Подробнее
 </template>
 
 <script>
