@@ -8,6 +8,7 @@
     //p.user-last-name  {{user.last_name}}
     <!--p.user-last-name  {{user.last_name}}-->
     <!--a(@click="userDetailsClicked") Details-->
+    input(type="button", @click ="showId" value="Показать ID")
 
 
 
@@ -15,11 +16,6 @@
 
 <script>
   export default {
-    props:{
-      user: {
-        type: Object,
-      }
-    },
     data(){
       return{
 
@@ -28,6 +24,9 @@
     methods:{
       userDetailsClicked(){
         this.$emit("userDetails", this.user.id);
+      },
+      showId(){
+        console.log(this.$route.params['id'])
       }
     }
   }
