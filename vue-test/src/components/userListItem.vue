@@ -1,7 +1,9 @@
 <template lang="pug">
   div.user-details-wrapper
     h1 Подробная информация о пользователе
-    span {{user.first_name}}
+      h2 {{user.id}}
+      h2 {{user.first_name}}
+      h2 {{user.last_name}}
     //span {{userId}}
     router-link(tag="a", :to="{name: 'userDetails', params:{id: 1}}") Подробнее
 </template>
@@ -11,9 +13,12 @@
     props: ['user'],
     data(){
       return{
-        user: null
+//        userItem: null
       }
     },
+    created(){
+      console.log(user);
+    }
 
 
   }

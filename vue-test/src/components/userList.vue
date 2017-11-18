@@ -1,7 +1,11 @@
 <template lang="pug">
   div.user-list-wrapper
     h1 Список юзеров
-    user-list-item(v-for="userItem in users", user="userItem")
+    <!--user-list-item(user="{id: 3, first_name: 'kek'}")-->
+    user-list-item(v-for="userItem in users", :user="userItem")
+    //span {{ userItem.id }}
+    //span {{ userItem.first_name }}
+    //span {{ userItem.last_name }}
 </template>
 
 <script>
