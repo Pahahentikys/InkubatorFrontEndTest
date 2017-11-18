@@ -1,10 +1,7 @@
 <template lang="pug">
   div.user-list-wrapper
     h1 Список юзеров
-    user-list-item
-
-
-
+    user-list-item(v-for="userItem in users", user="userItem")
 </template>
 
 <script>
@@ -13,18 +10,23 @@
   export default {
     data(){
       return{
-        users: []
+        users: [
+          {
+            id: "1",
+            first_name : "ololo",
+            last_name: "ololoevich"
+          },
+          {
+            id: "2",
+            first_name : "ololo",
+            last_name: "memovich"
+          },
+        ]
       }
     },
     components: {
       UserListItem
     },
-    methods:{
-      viewUserDetails(id){
-        let userForView =
-        this.$emit("viewUserDetails", "userForView")
-      }
-    }
   }
 
 </script>
