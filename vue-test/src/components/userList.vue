@@ -2,21 +2,24 @@
   div.user-list-wrapper
     h1 Список юзеров
     user-list-item(v-for="userItem in users", :user="userItem")
-    input(type="button" value="Получить пользователей" v-on:click="getUsers")
+    <!--input(type="button" value="Получить пользователей" v-on:click="getUsers")-->
+    input(type="button" value="Получить пользователей" v-on:click="getUsersJSONP")
     h2 {{ token }}
 </template>
 
 <script>
   import UserListItem from "../components/userListItem.vue"
   import axios from 'axios'
+  import jsonp from 'jsonp'
+  import Vue from 'vue'
+  import VueJsonp from 'vue-jsonp'
 
-  const apiVersion = 'v=5.69'
-  const method = 'users.search'
+  Vue.use(VueJsonp)
 
   export default {
-    props:['token'],
-    data(){
-      return{
+    props: ['token'],
+    data() {
+      return {
 //        token: '',
         users: [
 //          {
@@ -35,24 +38,66 @@
     components: {
       UserListItem
     },
-    methods:{
+
+    methods: {
+      getUsersJSONP() {
+        const urlAPI = 'https://api.vk.com/method/'
+        const method = 'users.search?'
+        const count = 'count=10&'
+        const query = 'q=' + this.$route.params['query'] + '&'
+
+        let requestURL = urlAPI + method + count + query + this.token
+
+        this.$jsonp(requestURL, {
+          count: 10,
+          fields: 'photo_100, first_name, last_name'
+        })
+          .then(response => {
+            this.users = response.data
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      },
+
       getUsers() {
-        axios.get(this.getURL(this.method),
-          {count: 10, fields: 'photo, first_name, last_name'}, {
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'X-Requested-With': 'XMLHttpRequest',
-              'Content-Type': 'application/json'
-            }
+        let headersConfig = {
+          headers: {
+            'Access-Control-Allow-Origin': 'http://localhost:8080',
+            'Content-Type': 'application/json'
+          }
+        }
+
+        axios.get(this.getURL(), {
+            params:
+              {
+                fields: 'first_name, last_name'
+              },
+            headersConfig
+
           }
         )
-          .then((response) => this.data = response.data.response)
-          .catch((error => console.log(error.response.data)))
+          .then((res) => {
 
-        console.log(this.response);
+//          console.log('ky-ky')
+//            console.log(res.data)
+//            this.users = JSON.parse(res.data).response.items
+//            let parsedString = res.data.response.items
+            this.users = res.data.response.items
+//            console.log(parsedString)
+          })
+
+          .catch(error => console.log(error))
+
       },
       getURL() {
-        return 'https://api.vk.com/method/' + method + '?' + 'q='+ this.$route.params['query'] + '&' + this.token + '&' + apiVersion
+        const urlAPI = 'https://api.vk.com/method/'
+        const apiVersion = 'v=5.69'
+        const method = 'users.search?'
+        const query = 'q=' + this.$route.params['query'] + '&'
+        const count = 'count=10&'
+
+        return urlAPI + method + count + query + this.token
       },
     }
   }
