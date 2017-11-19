@@ -122,9 +122,9 @@
 
      [ ] 18. Составить кросдоменный get-запрос на получение 10 юзеров, запросить фото, имя и фамилию на VK API.
 
-        - [ ] 18. 1. Ознакомиться с документацией по **vue-jsonp**: **https://www.npmjs.com/package/vue-jsonp**.
+        - [x] 18. 1. Ознакомиться с документацией по **vue-jsonp**: **https://www.npmjs.com/package/vue-jsonp**.
 
-        - [ ] 18. 2. Интегрировать библиотеку: **vue-jsonp**: **npm install vue-jsonp**.
+        - [x] 18. 2. Интегрировать библиотеку: **vue-jsonp**: **npm install vue-jsonp**.
 
         - [ ] 18. 3. Реализовать логику выполнения запроса в методе: getUsersJSONP().
 
