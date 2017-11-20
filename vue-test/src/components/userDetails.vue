@@ -3,7 +3,7 @@
     h1 Элемент из списка юзеров
     router-link( tag="a", to="/" ) На главную
     p.user-id {{user.uid}}
-    p {{user.photo_100}}
+    img(:src="user.photo_100")
     p.user-first-name {{user.first_name}}
     p.user-last-name {{user.last_name}}
     p.user-bdate {{user.bdate}}
@@ -49,5 +49,7 @@
 </script>
 
 <style lang="sass" scoped>
-
+  img
+    width: 100px
+    height: 100px
 </style>
