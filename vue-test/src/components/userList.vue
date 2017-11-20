@@ -2,6 +2,7 @@
   div.user-list-wrapper
     h1 Список юзеров
     user-list-item(v-for="userItem in users", :user="userItem")
+    div.users-loader(v-show="usersLoading") Идёт загрузка пользователей...
 </template>
 
 <script>
@@ -24,6 +25,8 @@
 
     methods: {
       getUsersJSONP() {
+        this.usersLoading = true
+
         const urlAPI = 'https://api.vk.com/method/'
         const method = 'users.search?'
         const count = 'count=10&'
@@ -39,6 +42,7 @@
             console.log(resp)
             this.users = resp.response
             console.log(this.users)
+            this.usersLoading = false
           })
           .catch((error) => {
             console.log(error)
