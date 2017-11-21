@@ -40,11 +40,10 @@
 
 
         this.$jsonp(requestURL, {
-          count: 10,
           fields: 'photo_100, first_name, last_name'
         })
           .then((resp) => {
-            console.log(resp)
+            resp.response.shift()
             this.users = this.users.concat(resp.response)
             console.log(this.users)
             this.offsetNumber += 10
@@ -54,8 +53,7 @@
           .catch((error) => {
             console.log(error)
           })
-
-      },
+      }
 
     },
     created() {
