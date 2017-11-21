@@ -3,10 +3,11 @@
     h1 Список юзеров
     user-list-item(v-for="userItem in users", :user="userItem")
     div.users-loader(v-show="usersLoading") Идёт загрузка пользователей...
+    input(type="button" value="Получить пользователей" v-on:click="getUsersJSONP")
 </template>
 
 <script>
-  import UserListItem from "../components/userListItem.vue"
+  import userListItem from "../components/userListItem.vue"
   import Vue from 'vue'
   import VueJsonp from 'vue-jsonp'
 
@@ -16,11 +17,13 @@
     props: ['token'],
     data() {
       return {
+        usersLoading: false,
+        offsetNumber: parseInt(0),
         users: []
       }
     },
     components: {
-      UserListItem
+      userListItem
     },
 
     methods: {
@@ -31,8 +34,10 @@
         const method = 'users.search?'
         const count = 'count=10&'
         const query = 'q=' + this.$route.params['query'] + '&'
+        let offset = 'offset=' + this.offsetNumber + '&'
 
-        let requestURL = urlAPI + method + count + query + this.token
+        let requestURL = urlAPI + method + count + offset + query + this.token
+
 
         this.$jsonp(requestURL, {
           count: 10,
@@ -40,18 +45,21 @@
         })
           .then((resp) => {
             console.log(resp)
-            this.users = resp.response
+            this.users = this.users.concat(resp.response)
             console.log(this.users)
+            this.offsetNumber += 10
+            console.log(this.offset)
             this.usersLoading = false
           })
           .catch((error) => {
             console.log(error)
           })
 
-      }
+      },
+
     },
     created() {
-      this.getUsersJSONP()
+//      this.getUsersJSONP()
     }
   }
 
