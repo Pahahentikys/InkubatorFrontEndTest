@@ -33,7 +33,11 @@ export const routes = [
     path:'/userDetails/:id',
     name:'userDetails',
     component: userDetails
-  }
+  },
 
+  {
+    path:'*',
+    redirect: '/'
+  }
 
 ]
