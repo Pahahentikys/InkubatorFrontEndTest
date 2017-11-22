@@ -17,7 +17,7 @@
   export default {
     data() {
       return {
-        user: {}
+        user: {},
       }
     },
     methods: {
@@ -49,7 +49,5 @@
 </script>
 
 <style lang="sass" scoped>
-  img
-    width: 100px
-    height: 100px
+  @import "../style/userDetails"
 </style>
