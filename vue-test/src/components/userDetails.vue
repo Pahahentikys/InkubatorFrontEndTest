@@ -1,7 +1,6 @@
 <template lang="pug">
   div.user-list-item-wrapper
     h1 Элемент из списка юзеров
-    router-link( tag="a", to="/" ) На главную
     p.user-id {{user.uid}}
     img(:src="user.photo_100")
     p.user-first-name {{user.first_name}}
