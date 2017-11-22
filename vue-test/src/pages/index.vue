@@ -1,8 +1,6 @@
 <template lang="pug">
   div
-    p INDEX
-    router-link(tag="a" to="/userProfile")
-      em Переход на страницу пользователя
+    h1 INDEX-PAGE
     div.show-user-wrapper
       user-list
 
@@ -21,6 +19,6 @@
 
 </script>
 
-<style>
+<style lang="sass">
 
 </style>
