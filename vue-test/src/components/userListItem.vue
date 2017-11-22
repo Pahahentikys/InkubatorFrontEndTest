@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.user-details-wrapper
+  div.user-item
     h1 Информация о пользователе
     img(:src="user.photo_100")
     p {{user.uid}}
@@ -15,6 +15,5 @@
 </script>
 
 <style lang="sass" scoped>
-  .text-details
-    text-transform: uppercase
+  @import "../style/userListItem"
 </style>
