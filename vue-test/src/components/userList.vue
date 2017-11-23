@@ -3,7 +3,7 @@
     h1 Список юзеров
     user-list-item(v-for="userItem in users", :user="userItem")
     div.users-loader(v-show="usersLoading") Идёт загрузка пользователей...
-    input(type="button" value="Получить пользователей" v-on:click="getUsersJSONP")
+    input(type="button" value="получить пользователей" v-on:click="getUsersJSONP" v-show="showed").users-input-more
 </template>
 
 <script>
@@ -17,7 +17,10 @@
     props: ['token'],
     data() {
       return {
+        currentRoute: this.$router.currentRoute.params['query'],
         usersLoading: false,
+        showed: false,
+        showedNotFound: false,
         offsetNumber: parseInt(0),
         users: []
       }
@@ -34,10 +37,8 @@
         const method = 'users.search?'
         const count = 'count=10&'
         const query = 'q=' + this.$route.params['query'] + '&'
-        let offset = 'offset=' + this.offsetNumber + '&'
-
-        let requestURL = urlAPI + method + count + offset + query + this.token
-
+        const offset = 'offset=' + this.offsetNumber + '&'
+        const requestURL = urlAPI + method + count + offset + query + this.token
 
         this.$jsonp(requestURL, {
           fields: 'photo_100, first_name, last_name'
@@ -49,6 +50,7 @@
             this.offsetNumber += 10
             console.log(this.offset)
             this.usersLoading = false
+            this.showed = true
           })
           .catch((error) => {
             console.log(error)
@@ -57,12 +59,15 @@
 
     },
     created() {
-//      this.getUsersJSONP()
+      if (this.currentRoute.name !== 'Index') {
+        console.log(this.currentRoute.name)
+        this.getUsersJSONP()
+      }
     }
   }
 
 </script>
 
 <style lang="sass" scoped>
-
+  @import "../style/userList"
 </style>
