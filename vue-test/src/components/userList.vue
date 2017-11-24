@@ -48,13 +48,22 @@
             this.users = this.users.concat(resp.response)
             console.log(this.users)
             this.offsetNumber += 10
-            console.log(this.offset)
             this.usersLoading = false
             this.showed = true
           })
           .catch((error) => {
             console.log(error)
           })
+      },
+      onScroll(){
+        console.log(document.body.scrollHeight)
+        if(document.body.scrollHeight - window.innerHeight - document.scrollingElement.scrollTop<=5){
+          if(this.usersLoading === false ){
+            this.usersLoading = true
+            console.log('Запрос полетел...')
+            this.getUsersJSONP()
+          }
+        }
       }
 
     },
@@ -63,6 +72,8 @@
         console.log(this.currentRoute.name)
         this.getUsersJSONP()
       }
+
+      window.addEventListener('scroll', this.onScroll);
     }
   }
 
