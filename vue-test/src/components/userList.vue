@@ -3,7 +3,6 @@
     h1 Список юзеров
     user-list-item(v-for="userItem in users", :user="userItem")
     div.users-loader(v-show="usersLoading") Идёт загрузка пользователей...
-    input(type="button" value="получить пользователей" v-on:click="getUsersJSONP" v-show="showed").users-input-more
 </template>
 
 <script>
@@ -19,8 +18,6 @@
       return {
         currentRoute: this.$router.currentRoute.params['query'],
         usersLoading: false,
-        showed: false,
-        showedNotFound: false,
         offsetNumber: parseInt(0),
         users: []
       }
@@ -40,28 +37,38 @@
         const offset = 'offset=' + this.offsetNumber + '&'
         const requestURL = urlAPI + method + count + offset + query + this.token
 
+        const offsetUsersParam = 10
+        const loaderTime = 1000
+
         this.$jsonp(requestURL, {
           fields: 'photo_100, first_name, last_name'
         })
           .then((resp) => {
+
             resp.response.shift()
             this.users = this.users.concat(resp.response)
             console.log(this.users)
-            this.offsetNumber += 10
-            this.usersLoading = false
-            this.showed = true
+            this.offsetNumber += offsetUsersParam
+
+            setTimeout(() => {
+              this.usersLoading = false
+            }, loaderTime)
+
           })
           .catch((error) => {
             console.log(error)
           })
       },
-      onScroll(){
-        console.log(document.body.scrollHeight)
-        if(document.body.scrollHeight - window.innerHeight - document.scrollingElement.scrollTop<=5){
-          if(this.usersLoading === false ){
+      onScroll() {
+        const requestTime = 2000
+
+        if (document.body.scrollHeight - window.innerHeight - document.scrollingElement.scrollTop <= 5) {
+          if (this.usersLoading === false) {
             this.usersLoading = true
             console.log('Запрос полетел...')
-            this.getUsersJSONP()
+            setTimeout(() => {
+              this.getUsersJSONP()
+            }, requestTime)
           }
         }
       }
@@ -69,7 +76,6 @@
     },
     created() {
       if (this.currentRoute.name !== 'Index') {
-        console.log(this.currentRoute.name)
         this.getUsersJSONP()
       }
 
