@@ -3,6 +3,7 @@
     h1 Список юзеров
     user-list-item(v-for="userItem in users", :user="userItem")
     div.users-loader(v-show="usersLoading") Идёт загрузка пользователей...
+    div.users-not-found(v-show="usersNotFound") Пользователей не найдено!
 </template>
 
 <script>
@@ -17,6 +18,7 @@
     data() {
       return {
         currentRoute: this.$router.currentRoute.params['query'],
+        usersNotFound: false,
         usersLoading: false,
         offsetNumber: parseInt(0),
         users: []
@@ -44,8 +46,12 @@
           fields: 'photo_100, first_name, last_name'
         })
           .then((resp) => {
-
             resp.response.shift()
+            console.log(resp.response)
+            if(resp.response.length < 1){
+              console.log('Пользователей нет')
+              this.usersNotFound = true
+            }
             this.users = this.users.concat(resp.response)
             console.log(this.users)
             this.offsetNumber += offsetUsersParam
